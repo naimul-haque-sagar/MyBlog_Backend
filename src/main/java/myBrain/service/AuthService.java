@@ -10,14 +10,18 @@ import org.springframework.stereotype.Service;
 
 import myBrain.dto.LoginRequest;
 import myBrain.dto.RegisterRequest;
-import myBrain.model.User;
-import myBrain.repository.UserRepository;
+import myBrain.model.AppUser;
+import myBrain.model.AppUserGroup;
+import myBrain.repository.AppUserGroupRepository;
+import myBrain.repository.AppUserRepository;
 import myBrain.security.JwtProvider;
 
 @Service
 public class AuthService {
 	@Autowired
-	private UserRepository userRepository;
+	private AppUserRepository userRepository;
+	@Autowired
+	private AppUserGroupRepository userGroupRepository;
 	@Autowired
 	private PasswordEncoder passEncoder;
 	@Autowired
@@ -26,11 +30,16 @@ public class AuthService {
 	private JwtProvider jwtProvider;
 	
 	public void signup(RegisterRequest registerRequest) {
-		User user=new User();
+		AppUser user=new AppUser();
 		user.setUserName(registerRequest.getUsername());
 		user.setPassword(passwordEncoder(registerRequest.getPassword()));
 		user.setEmail(registerRequest.getEmail());
 		userRepository.save(user);
+		
+		AppUserGroup userGroup=new AppUserGroup();
+		userGroup.setUsername(registerRequest.getUsername());
+		userGroup.setUser_group("user");
+		userGroupRepository.save(userGroup);
 	}
 
 	private String passwordEncoder(String p) {
@@ -43,7 +52,7 @@ public class AuthService {
 				(loginRequest.getUsername(), loginRequest.getPassword()));
 
 		SecurityContextHolder.getContext().setAuthentication(authentication);
-		return (String) jwtProvider.generateToken(authentication);
+		return (String) jwtProvider.generateToken(authentication)+ authentication.getAuthorities();
 	}
 	
 }
