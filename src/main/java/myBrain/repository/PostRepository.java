@@ -1,0 +1,9 @@
+package myBrain.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import myBrain.model.Post;
+
+public interface PostRepository extends JpaRepository<Post, Long>{
+
+}
