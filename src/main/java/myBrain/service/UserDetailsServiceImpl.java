@@ -46,7 +46,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         
         Set<SimpleGrantedAuthority> set=new HashSet<>();
         for(AppUserGroup x:list) {
-        	set.add(new SimpleGrantedAuthority(x.getUser_group()));
+        	set.add(new SimpleGrantedAuthority(x.getUser_group().toUpperCase()));
         }
         return set;
     }
