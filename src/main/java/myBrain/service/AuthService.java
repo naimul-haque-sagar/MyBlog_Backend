@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import myBrain.dto.JwtTokenResponse;
 import myBrain.dto.LoginRequest;
 import myBrain.dto.RegisterRequest;
 import myBrain.model.AppUser;
@@ -49,12 +50,14 @@ public class AuthService {
 		return passEncoder.encode(p);
 	}
 
-	public String login(LoginRequest loginRequest) {
+	public JwtTokenResponse login(LoginRequest loginRequest) {
 		Authentication authentication=authenticationManager.authenticate(new UsernamePasswordAuthenticationToken
 				(loginRequest.getUsername(), loginRequest.getPassword()));
 
 		SecurityContextHolder.getContext().setAuthentication(authentication);
-		return (String) jwtProvider.generateToken(authentication);
+		String authenticationToken = jwtProvider.generateToken(authentication);
+		
+		return new JwtTokenResponse(authenticationToken, loginRequest.getUsername());
 	}
 
 	public Optional<User> getCurrentUser() {

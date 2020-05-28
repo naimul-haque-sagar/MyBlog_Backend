@@ -18,7 +18,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import myBrain.security.JwtAuthenticationFilter;
 
-
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig  extends WebSecurityConfigurerAdapter{
@@ -64,7 +63,7 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter{
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**")
+               registry.addMapping("/**")
               .allowedOrigins("*")
               .allowedMethods("*")
               .maxAge(3600L)
