@@ -19,7 +19,7 @@ public class Authcontroller {
 	@Autowired
 	AuthService authService;
 	
-	@PostMapping("signup")
+	@PostMapping("/signup")
 	public ResponseEntity<HttpStatus> signup(@RequestBody RegisterRequest registerRequest) {
 		authService.signup(registerRequest);
 		return new ResponseEntity<>(HttpStatus.OK);
