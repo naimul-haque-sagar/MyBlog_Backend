@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,13 +28,13 @@ public class PostController {
 	}
 	
 	@GetMapping("/all")
-	@PreAuthorize("hasAuthority('ADMIN')")
+	//@PreAuthorize("hasAuthority('ADMIN')")
 	public ResponseEntity<List<PostDto>> showAllPosts(){
 		return new ResponseEntity<List<PostDto>>(postService.showAllPosts(),HttpStatus.OK);
 	}
 	
 	@GetMapping("get/{id}")
-	@PreAuthorize("hasAuthority('USER')")
+	//@PreAuthorize("hasAuthority('USER')")
 	public ResponseEntity<PostDto> getSinglePost(@PathVariable @RequestBody Long id){
 		return new ResponseEntity<PostDto>(postService.readSinglePost(id),HttpStatus.OK);
 	}
