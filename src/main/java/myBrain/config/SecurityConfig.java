@@ -16,13 +16,15 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import lombok.AllArgsConstructor;
 import myBrain.security.JwtAuthenticationFilter;
 
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
+@AllArgsConstructor
 public class SecurityConfig  extends WebSecurityConfigurerAdapter{
-	@Autowired
-	private UserDetailsService userDetailsService;
+
+	private final UserDetailsService userDetailsService;
 	
 	@Bean
 	public JwtAuthenticationFilter jwtAuthenticationFilter() {

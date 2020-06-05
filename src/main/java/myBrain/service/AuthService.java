@@ -2,7 +2,6 @@ package myBrain.service;
 
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -11,6 +10,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import lombok.AllArgsConstructor;
 import myBrain.dto.JwtTokenResponse;
 import myBrain.dto.LoginRequest;
 import myBrain.dto.RegisterRequest;
@@ -21,17 +21,18 @@ import myBrain.repository.AppUserRepository;
 import myBrain.security.JwtProvider;
 
 @Service
+@AllArgsConstructor
 public class AuthService {
-	@Autowired
-	private AppUserRepository userRepository;
-	@Autowired
-	private AppUserGroupRepository userGroupRepository;
-	@Autowired
-	private PasswordEncoder passEncoder;
-	@Autowired
-	private AuthenticationManager authenticationManager;
-	@Autowired
-	private JwtProvider jwtProvider;
+
+	private final AppUserRepository userRepository;
+
+	private final AppUserGroupRepository userGroupRepository;
+
+	private final PasswordEncoder passEncoder;
+
+	private final AuthenticationManager authenticationManager;
+
+	private final JwtProvider jwtProvider;
 	
 	public void signup(RegisterRequest registerRequest) {
 		AppUser user=new AppUser();

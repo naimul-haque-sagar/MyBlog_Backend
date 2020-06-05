@@ -4,13 +4,14 @@ import myBrain.model.AppUser;
 import myBrain.model.AppUserGroup;
 import myBrain.repository.AppUserGroupRepository;
 import myBrain.repository.AppUserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import lombok.AllArgsConstructor;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -19,12 +20,12 @@ import java.util.List;
 import java.util.Set;
 
 @Service
+@AllArgsConstructor
 public class UserDetailsServiceImpl implements UserDetailsService {
-	@Autowired
-	private AppUserGroupRepository appUserGroupRepository;
+
+	private final AppUserGroupRepository appUserGroupRepository;
 	
-    @Autowired
-    private AppUserRepository userRepository;
+    private final AppUserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

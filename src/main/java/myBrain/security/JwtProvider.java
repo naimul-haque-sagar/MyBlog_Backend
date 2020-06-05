@@ -2,7 +2,6 @@ package myBrain.security;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.security.Key;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
@@ -19,8 +18,6 @@ import org.springframework.stereotype.Service;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.security.Keys;
 import myBrain.exception.SpringBlogException;
 @Service
 public class JwtProvider {

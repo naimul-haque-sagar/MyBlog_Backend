@@ -1,10 +1,10 @@
 package myBrain.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import lombok.AllArgsConstructor;
 import myBrain.dto.PostDto;
 import myBrain.exception.PostNotFoundException;
 import myBrain.model.Post;
@@ -16,11 +16,11 @@ import java.util.List;
 import static java.util.stream.Collectors.toList;
 
 @Service
+@AllArgsConstructor
 public class PostService {
 
-    @Autowired
     private AuthService authService;
-    @Autowired
+
     private PostRepository postRepository;
 
     @Transactional

@@ -2,7 +2,6 @@ package myBrain.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,14 +11,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import lombok.AllArgsConstructor;
 import myBrain.dto.PostDto;
 import myBrain.service.PostService;
 
 @RestController
 @RequestMapping("/api/posts")
+@AllArgsConstructor
 public class PostController {
-	@Autowired
-	private PostService postService;
+
+	private final PostService postService;
 	
 	@PostMapping
 	public ResponseEntity<HttpStatus> createPost(@RequestBody PostDto postDto) {
