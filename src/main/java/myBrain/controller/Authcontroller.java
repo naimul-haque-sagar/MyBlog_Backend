@@ -17,7 +17,6 @@ import myBrain.service.AuthService;
 @RequestMapping("api/auth")
 @AllArgsConstructor
 public class Authcontroller {
-
 	private final AuthService authService;
 	
 	@PostMapping("/signup")
