@@ -2,6 +2,7 @@ package myBrain.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Import;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -40,6 +41,13 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter{
 		.permitAll()
 		.antMatchers("/api/posts/**")
 		.permitAll()
+				.antMatchers("/v2/api-docs",
+						"/configuration/ui",
+						"/swagger-resources/**",
+						"/configuration/security",
+						"/swagger-ui.html",
+						"/webjars/**")
+				.permitAll()
 		.anyRequest()
 		.authenticated().and()
 		.sessionManagement()
