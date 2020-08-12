@@ -1,4 +1,20 @@
 This is my personal blog
 
-This blog is built with --> spring boot,
-Angular
+This blog is built with
+
+-->spring boot
+-->spring boot data jpa
+-->spring security
+-->jwt
+-->jwt encryption
+-->mysql
+-->swagger
+-->lombok
+-->mapstruct
+
+There is another repository of this backend service which is built with angular
+
+
+
+
+
